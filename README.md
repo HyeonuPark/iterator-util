@@ -77,3 +77,19 @@ for (let [x, y] of product(xCoord, yCoord)) {
 
 // result: (1, 1) (1, 2) (2, 1) (2, 2) (3, 1) (3, 2)
 ```
+
+## indexed
+
+Provide index number to yielded value
+
+```js
+import {indexed} from 'iterator-util'
+
+const data = ['foo', 'bar', 'baz']
+
+for (let {index, value} of indexed(data)) {
+  console.log(`(${index}, ${value})`)
+}
+
+// result: (0, foo) (1, bar) (2, baz)
+```
