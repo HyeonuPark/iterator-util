@@ -1,6 +1,8 @@
 iterator-util
 ==============
 
+[![Build Status](https://travis-ci.org/HyeonuPark/iterator-util.svg?branch=master)](https://travis-ci.org/HyeonuPark/iterator-util)
+
 Some useful iterator utilities
 
 # Usage
