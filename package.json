@@ -5,7 +5,7 @@
   "main": "bin/index.js",
   "scripts": {
     "test": "mocha test --compilers js:babel-register,js:babel-polyfill",
-    "build": "babel src --our-dir bin",
+    "build": "babel src --out-dir bin",
     "preversion": "npm test",
     "postversion": "npm run build && npm publish && git push origin master"
   },
