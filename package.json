@@ -7,7 +7,7 @@
     "test": "mocha test --compilers js:babel-register,js:babel-polyfill",
     "build": "babel src --our-dir bin",
     "preversion": "npm test",
-    "postversion": "npm run buid && npm publish && git push origin master"
+    "postversion": "npm run build && npm publish && git push origin master"
   },
   "repository": {
     "type": "git",
