@@ -1,6 +1,6 @@
 {
   "name": "iterator-util",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Some useful iterator utilities",
   "main": "bin/index.js",
   "scripts": {
