@@ -11,10 +11,10 @@ function* productInner (iterableList) {
     return
   }
 
+  const innerIterable = [...productInner(iterableList.slice(1))]
   for (let outer of iterableList[0]) {
-    for (let elem of productInner(iterableList.slice(1))) {
-      elem.unshift(outer)
-      yield elem
+    for (let inner of innerIterable) {
+      yield [outer, ...inner]
     }
   }
 }

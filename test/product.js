@@ -50,4 +50,23 @@ describe('product()', () => {
       [2, 3, 5]
     ])
   })
+
+  it('should iterate once per given iterables', () => {
+    function* range (min, max) {
+      while (min <= max) {
+        yield min
+        min += 1
+      }
+    }
+
+    const result = product(range(1, 3), range(1, 2))
+    expect([...result]).to.deep.equal([
+      [1, 1],
+      [1, 2],
+      [2, 1],
+      [2, 2],
+      [3, 1],
+      [3, 2]
+    ])
+  })
 })
