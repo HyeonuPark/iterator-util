@@ -20,8 +20,13 @@ describe('concat()', () => {
     expect([...result]).to.be.empty
   })
 
-  it('should treat non-iterable values as single-element iterable', () => {
+  it('should treat non-iterable values as a single-element iterable', () => {
     const result = concat([1, 2], 3, [4, 5, 6])
+    expect([...result]).to.deep.equal([1, 2, 3, 4, 5, 6])
+  })
+
+  it('should treat null-ish values as a empty iterable', () => {
+    const result = concat([1, 2], null, 3, undefined, [4, 5, 6])
     expect([...result]).to.deep.equal([1, 2, 3, 4, 5, 6])
   })
 })
