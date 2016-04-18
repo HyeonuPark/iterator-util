@@ -91,3 +91,56 @@ for (let {index, value} of indexed(data)) {
 
 // result: (0, foo) (1, bar) (2, baz)
 ```
+## some
+
+Array#some but lazy as iterator
+
+```js
+import {some} from 'iterator-util'
+
+const data = [3, 4, 5]
+
+some(data, d => d > 4) // true
+some(data, d => d > 5) // false
+```
+
+## every
+
+Array#every but lazy as iterator
+
+```js
+import {every} from 'iterator-util'
+
+const data = [3, 4, 5]
+
+every(data, d => d < 5) // false
+every(data, d => d < 6) // true
+```
+
+## group
+
+Iterate groups with given length
+
+```js
+import {group} from 'iterator-util'
+
+const data = [3, 4, 5, 6, 7, 8, 9]
+
+for (let elem of group(data, 3)) {
+  console.log(elem)
+}
+
+// result: [3, 4, 5] [6, 7, 8] [9, null, null]
+```
+
+## take
+
+Take first n elements
+
+```js
+import {take} from 'iterator-util'
+
+const data = [3, 4, 5]
+
+take(indexed(data), 2) // [{index: 0, value: 3}, {index: 1, value: 4}]
+```
