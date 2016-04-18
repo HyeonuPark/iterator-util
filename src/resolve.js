@@ -7,3 +7,10 @@ export function resolve (maybeIterable) {
   }
   return [maybeIterable]
 }
+
+export function resolveNumber (num, min) {
+  if (typeof num !== 'number' || num < min) {
+    return min
+  }
+  return num
+}
