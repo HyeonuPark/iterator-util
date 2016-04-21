@@ -19,4 +19,10 @@ describe('resolve()', () => {
     expect(resolve(undefined)).to.be.empty
     expect(resolve(null)).to.be.empty
   })
+
+  it('should not treat string as iterable', () => {
+    expect([...resolve('foo')])
+      .to.have.lengthOf(1)
+      .and.have.property(0, 'foo')
+  })
 })

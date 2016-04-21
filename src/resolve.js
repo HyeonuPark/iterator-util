@@ -1,4 +1,7 @@
 export function resolve (maybeIterable) {
+  if (typeof maybeIterable === 'string') {
+    return [maybeIterable]
+  }
   if (maybeIterable && typeof maybeIterable[Symbol.iterator] === 'function') {
     return maybeIterable
   }
