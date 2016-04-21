@@ -25,8 +25,14 @@ describe('concat()', () => {
     expect([...result]).to.deep.equal([1, 2, 3, 4, 5, 6])
   })
 
-  it('should treat null-ish values as a empty iterable', () => {
+  it('should treat nullish values as a empty iterable', () => {
     const result = concat([1, 2], null, 3, undefined, [4, 5, 6])
     expect([...result]).to.deep.equal([1, 2, 3, 4, 5, 6])
+  })
+
+  it('should return argument when it\'s only non-nullish argument', () => {
+    const only = [3, 4, 5]
+    const result = concat(null, null, only, null)
+    expect(result).to.equal(only)
   })
 })
