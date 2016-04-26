@@ -1,7 +1,8 @@
-import {resolve, resolveNumber} from './resolve'
+import {resolve} from './resolve'
+import {toNumber} from './util'
 
 export function* group (iterable, _length) {
-  const length = resolveNumber(_length, 1)
+  const length = toNumber(_length, 1)
   let cache = []
 
   for (let elem of resolve(iterable)) {

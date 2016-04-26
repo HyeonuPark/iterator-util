@@ -1,23 +1,47 @@
-import {resolve} from './resolve'
+import {checkIterable} from './resolve'
+import {getSelf, forwardReturn, forwardThrow} from './util'
 
-function* concatInternal (iterableList) {
-  for (let iterable of iterableList) {
-    yield* iterable
+const symbolIterator = Symbol.iterator
+
+export function concat (...iterable) {
+  iterable = iterable.filter(elem => elem != null)
+  const iterableLength = iterable.length
+  if (iterableLength === 0) {
+    return {
+      next () {
+        return {done: true}
+      }
+    }
+  } else if (iterableLength === 1) {
+    const onlyIterable = iterable[0]
+    const checked = checkIterable(onlyIterable)
+    return checked.type === 'iterable'
+      ? onlyIterable
+      : checked.get()
   }
-}
 
-export function concat (...maybeIterable) {
-  const validIterable = maybeIterable
-    .filter(elem => elem != null)
-    .map(resolve)
+  let isDone = false
+  let current = checkIterable(iterable.shift()).get()
 
-  const validLength = validIterable.length
-  
-  if (validLength === 0) {
-    return []
-  } else if (validLength === 1) {
-    return validIterable[0]
+  return {
+    next () {
+      if (isDone) return {done: true}
+
+      const result = current.next()
+      if (!result.done) {
+        return result
+      } else {
+        const {value} = result
+        if (iterable.length === 0) {
+          isDone = true
+          return {done: true, value}
+        }
+        current = checkIterable(iterable.shift()).get()
+        return this.next()
+      }
+    },
+    return: forwardReturn(current),
+    throw: forwardThrow(current),
+    [symbolIterator]: getSelf
   }
-
-  return concatInternal(validIterable)
 }

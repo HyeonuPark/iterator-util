@@ -1,7 +1,8 @@
-import {resolve, resolveNumber} from './resolve'
+import {resolve} from './resolve'
+import {toNumber} from './util'
 
 export function take (iterable, _count) {
-  const count = resolveNumber(_count, 0)
+  const count = toNumber(_count, 0)
   const result = []
 
   for (let elem of resolve(iterable)) {
@@ -16,4 +17,11 @@ export function take (iterable, _count) {
   }
 
   return result
+}
+
+export function first (iterable) {
+  for (let elem of resolve(iterable)) {
+    return elem
+  }
+  return null
 }

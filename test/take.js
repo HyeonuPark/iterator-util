@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import {take} from '../src/take'
+import {take, first} from '../src/take'
 
 describe('take()', () => {
   function* gen () {
@@ -38,5 +38,25 @@ describe('take()', () => {
 
     expect(take(obj, 1)).to.deep.equal([obj])
     expect(take(obj, 2)).to.deep.equal([obj, null])
+  })
+})
+
+describe('first()', () => {
+  function* gen () {
+    yield 3
+    yield 4
+  }
+
+  it('should return first element of given iterable', () => {
+    expect(first(gen())).to.equal(3)
+  })
+
+  it('should return null when given iterable is empty', () => {
+    expect(first([])).to.equal(null)
+  })
+
+  it('should return non-iterable argument back', () => {
+    const obj = {}
+    expect(first(obj)).to.equal(obj)
   })
 })

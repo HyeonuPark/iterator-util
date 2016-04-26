@@ -14,7 +14,7 @@ describe('map()', () => {
 
   it('should treat non-iterable as a single-element iterable', () => {
     const obj = {}
-    const result = map(obj, elem => [elem])
+    const result = map(obj, elem => [elem], true)
     expect([...result])
       .to.have.lengthOf(1)
       .and.have.property(0)

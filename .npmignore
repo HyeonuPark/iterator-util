@@ -1,3 +1,5 @@
 src
+test
+perf
 .babelrc
 .travis.yml
