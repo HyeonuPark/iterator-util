@@ -20,4 +20,18 @@ describe('map()', () => {
       .and.have.property(0)
       .with.property(0, obj)
   })
+
+  it('should call callback func only once per element', () => {
+    const array = [4, 5, 6]
+    let count = 0
+
+    function mutator (num) {
+      count += 1
+      return num + 1
+    }
+
+    const result = map(array, mutator)
+    expect([...result]).to.deep.equal([5, 6, 7])
+    expect(count).to.equal(3)
+  })
 })

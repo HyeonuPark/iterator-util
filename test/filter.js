@@ -73,4 +73,18 @@ describe('filterNot()', () => {
       .to.have.lengthOf(1)
       .and.have.property(0, obj)
   })
+
+  it('should call callback func only once per element', () => {
+    const array = [4, 5, 6]
+    let count = 0
+
+    function test (num) {
+      count += 1
+      return num < 6
+    }
+
+    const result = filter(array, test)
+    expect([...result]).to.deep.equal([4, 5])
+    expect(count).to.equal(3)
+  })
 })

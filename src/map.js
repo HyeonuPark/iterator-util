@@ -17,7 +17,7 @@ export function map (iterable, mutator) {
   return {
     next () {
       const {done, value} = iterator.next()
-      return {done, value: mutator(value)}
+      return {done, value: done || mutator(value)}
     },
     return: forwardReturn(iterator),
     throw: forwardThrow(iterator),
